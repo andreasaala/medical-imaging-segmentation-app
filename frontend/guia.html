@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de usuario</title>
+    <link href="apariencia.css" rel="stylesheet" media="screen">
+</head>
+<body>
+    <header>
+        <!-- Barra de navegación superior -->
+        <nav class="listaheader">
+            <h1>GUI-SEGMENTACIÓN IMÁGENES MÉDICAS</h1>
+            <ul>
+                <li><a href="guia.html" class="actual">Guía de uso</a></li>
+            </ul>  
+        </nav>
+    </header>
+    <main id="contenidoGuia">
+        <p>Esta es la guía de uso donde se describen las funcionalidades de la aplicación disponibles.</p>
+    
+        <h2>Carga de imágenes</h2>
+        <ul>
+            <li><strong>Botón "Cargar imagen": </strong> permite seleccionar el archivo deseado desde el dispositivo.</li>
+            <li>Se pueden cargar imágenes en los formatos: DICOM (.dcm), TIFF (.tiff, .tif), PNG (.png) y JPG/JPEG (.jpg, .jpeg).</li>
+            <li>Una vez cargada, la imagen se muestra en el área principal de visualización de la interfaz.</li>
+        </ul> 
+
+        <h2>Desplazamiento y zoom</h2>
+        <ul>
+            <li><strong>Botón "Activar/Desactivar desplazamiento": </strong> habilita o deshabilita las funcionalidades de desplazamiento y zoom sobre la imagen.</li>
+            <li>Estas funciones se pueden utilizar tanto con ratón como con pantalla táctil.</li>
+            <li class="indentado"><strong>Desplazamiento: </strong> hacer clic sobre la imagen y, manteniendo pulsado, arrastrar ligeramente para activar el desplazamiento. Luego se podrá mover la imagen libremente sin necesidad de mantener pulsado. Para detenerlo, hacer clic nuevamente.</li>
+            <li class="indentado"><strong>Zoom: </strong> utilizar la rueda del ratón, girando hacia arriba para acercar (zoom in) y hacia abajo para alejar (zoom out). En el caso de la pantalla táctil, realizar el gesto de separación de dos dedos para acercar (zoom in) y de acercamiento de dos dedos para alejar (zoom out).</li>
+        </ul> 
+
+        <h2>Segmentación de imágenes</h2>
+        <p>Existen dos técnicas de segmentación que se pueden aplicar sobre las imágenes cargadas:</p>
+        <ul>
+            <li><strong>Region Growing:</strong> funciona con el botón "Activar/Desactivar RG". Una vez activado, el usuario puede hacer clic sobre un punto de interés en la imagen, 
+                que será utilizado como semilla para iniciar la segmentación.</li>
+            <li class="indentado"> El campo <strong>"Tolerancia"</strong> permite definir el nivel de sensibilidad que aplicará el algoritmo (el rango de valores que se incluirán respecto al valor de la semilla seleccionada).
+                Si no se especifica ningún valor, se utiliza por defecto el valor 10. Por ejemplo, si el valor de la semilla es 230 y la tolerancia es 10, se segmentarán todos los píxeles cuyos valores estén entre 220 y 240. 
+                Por tanto, un valor de tolerancia más bajo hará que se incluyan píxeles muy similares al punto seleccionado, mientras que un valor más alto abarcará áreas más heterogéneas. </li>
+            <li><strong>MedSAM: </strong>  funciona con el botón "Activar/Desactivar MedSAM". Una vez activado, el usuario puede hacer clic en un punto de la imagen y, manteniendo pulsado, 
+                arrastrar el cursor para dibujar una caja que delimite el área de interés que se desea segmentar.</li>
+        </ul> 
+
+        <h2>Edición manual de la segmentación</h2>
+        <ul>
+            <li><strong>Botón "Dibujar": </strong> añade manualmente áreas a la máscara existente.</li>
+            <li><strong>Botón "Borrar": </strong> elimina manualmente zonas de la máscara.</li>
+            <li>Clicar, y manteniendo pulsado, arrastrar levemente para habilitar la función.Luego se podrá dibujar/borrar sobre la imagen libremente sin necesidad de mantener pulsado. Para detenerlo, hacer clic nuevamente.</li>
+            <li>El "Radio de edición" ajusta el grosor de ambas herramientas. Se muestra una previsualización del tamaño seleccionado al lado.</li>
+        </ul> 
+
+        <h2>Cálculo de la IoU (Intersection Over Union)</h2>
+        <ul>
+            <li><strong>Botón "Cargar GroundTruth": </strong> permite seleccionar el archivo correspondiente a la Ground Truth de la imagen previamente cargada desde el dispositivo del usuario. Esta imagen no se visualiza en la interfaz.</li>
+            <li>Se pueden cargar imágenes en los formatos: TIFF (.tiff, .tif), PNG (.png) y JPG/JPEG (.jpg, .jpeg).</li>
+            <li><strong>Botón "Calcular IoU": </strong> calcula la métrica IoU una vez se ha cargado una imagen y se le ha aplicado una técnica de segmentación que genera una máscara.
+                Al pulsar este botón, aparece una alerta donde se debe indicar qué técnica se ha utilizado, introduciendo "R" para Region Growing o "M" para MedSAM.</li>
+            <li class="indentado">Si se ha usado MedSAM, el cálculo de la IoU se realiza únicamente sobre el área de la caja seleccionada.</li>
+            <li class="indentado">Si se ha utilizado Region Growing, la IoU se calcula sobre toda la imagen.</li>
+        </ul> 
+    
+        <h2>Gestión del proyecto</h2>
+        <ul>
+            <li><strong>Botón "Guardar máscara": </strong>descarga la máscara generada para su posterior análisis o almacenamiento. Si es DICOM, se podrá descargar en PNG como el resto o como un objeto DICOM SEG que referencia al archivo dicom original.</li>
+            <li><strong>Botón "Reset Total": </strong> reinicia la imagen ya cargada, borrando la máscara y cualquier modificación realizada de desplazamiento o zoom. La imagen se muestra como recién cargada.</li>
+        </ul> 
+
+        <p>Todas las herramientas son exclusivas, por lo que no se puede mantener más de una activa a la vez.</p>
+    </main>  
+    <footer>
+        <p>Alumna: Andrea Mei Sala Aracil</p>
+        <p>TFG Ingeniería Biomédica. Copyright 2025 &copy;</p>
+    </footer> 
+</body>
+</html>

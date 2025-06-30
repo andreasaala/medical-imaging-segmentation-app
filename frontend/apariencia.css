@@ -1,0 +1,333 @@
+
+/*Tipo de fuente*/
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+:root {
+    /*Paleta de colores*/
+    --vino: #9B1B30;
+    --vinoOscuro: #931F33;
+    --negro: #000;
+    --blanco: white;
+    --gris1: #f5f5f5;
+    --gris2: #d3d3d3;
+    --gris3: #a9a9a9;
+    --teal: #007F7F;
+    --azul: #1d2d50;
+    --verde: #50C878;
+    
+}
+
+/* General */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+/* Barra de navegación superior */
+header {
+    background: var(--blanco);
+    box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.1);
+    padding: 0 2em;
+    height: 4em;
+}
+
+.listaheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em 0;
+}
+
+.listaheader h1 {
+    font-size: 1.3em;
+    margin: 0;
+}
+
+.listaheader ul {
+    list-style: none;
+    display: flex;
+    gap: 2em;
+    padding: 0;
+}
+
+.listaheader a {
+    text-decoration: none;
+    color: var(--negro);
+    font-weight: bold;
+}
+
+.listaheader a:hover{
+   font-size: large;
+}
+
+.listaheader .actual {
+    color: var(--vino);
+    text-decoration: underline;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.contenedorPrincipal {
+    display: flex;
+    flex: 1;
+    position: relative;
+}
+
+/* ZONA VISUALIZACIÓN IMAGEN */
+.contenedorImagen {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: calc(100vh - 8em); /* 4em del header + 4em del footer */
+    min-height: 75vh;
+    position: relative; /* en teoria para q se dibuje la caja */
+}
+
+.contenedorImagen img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* MENÚ LATERAL IZQUIERDO */
+.menuIzquierdo {
+    width: 15vw; /* Ocupa el 15% del ancho de la pantalla */
+    background: var(--gris1);
+    overflow-y: auto;
+    padding: 1em;
+    padding-left: 2em;
+    border-right: 0.08em solid var(--gris2);
+}
+
+.menuIzquierdo h2 {
+    font-size: 1em;
+    text-align: center;
+    background-color: var(--vinoOscuro);
+    color: var(--blanco);
+    letter-spacing: 0.1em;
+    padding: 0.5em;
+    margin-top: 0;
+    margin-bottom: 2em;
+}
+
+.itemMenu {
+    margin-bottom: 1.5em;
+}
+
+.tituloMenu {
+    cursor: pointer;
+    margin: 0 0 1em 0;
+    font-size: 1em;
+}
+
+.itemMenu h3:hover {
+    color: var(--vino);
+    font-size: large;
+}
+
+.submenu {
+    display: none;
+}
+
+.submenu button { 
+    display: block;
+    margin: 5px 0;
+    padding: 8px;
+    width: 100%;
+    border: none;
+    background: var(--blanco);
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Outfit', Arial, Helvetica, sans-serif;
+    border: 0.1em solid var(--vino);
+    border-radius: 1em;
+}
+
+/* input */
+input {
+    border: 0.1em solid var(--negro);
+    width: 4.5em;
+    height: 1.5em;
+    margin-bottom: 0.8em;
+}
+label {
+    font-family: 'Outfit', Arial, Helvetica, sans-serif;
+    font-size: 0.9em;
+}
+input:focus {
+    outline: none;
+    border: 0.15em solid var(--verde);
+}
+
+#tituloCalcularIoU {
+    margin-top: 3em;
+    font-size: 0.9em;
+}
+#textoIoU {
+    font-size: 0.9em;
+}
+
+/* MENÚ LATERAL DERECHO */
+.menuDerecho {
+    width: 15vw;
+    background: var(--gris1);
+    padding: 1em;
+    padding-right: 2em;
+    border-left: 0.08em solid var(--gris2);
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.menuDerecho button, #CargarGroundTruth, #botonCalcularIoU { /* para poner el botón de cargar groundTruth igual que el resto */
+    padding: 0.8em;
+    background: var(--blanco);
+    cursor: pointer;
+    border: 0.1em solid var(--vino);
+    border-radius: 1em;
+    font-family: 'Outfit', Arial, Helvetica, sans-serif;
+}
+
+button:hover, #CargarGroundTruth:hover, #botonCalcularIoU:hover {
+    background: var(--vino);
+    color: var(--blanco);
+}
+
+/* Mostrar el submenú activo */
+.submenu.active {
+    display: block;
+}
+
+/* al pulsar botón (borde en verde para indicar que está activo)*/
+#botonActivarMedsam.botonActivado, #botonDesplazar.botonActivado, #botonActivarRG.botonActivado, 
+#botonPintar.botonActivado, #botonBorrar.botonActivado{
+    border: 0.2em solid var(--verde);
+}
+
+/*dibujar y borrar (editar la máscara)*/
+#tituloEditarMascara {
+    font-size: 0.9em;
+    margin-bottom: 0;
+    margin-top: 0.2em;
+}
+#controlPincel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3em; /* espacio entre etiqueta y campo*/
+}
+
+#sliderContainer, #editarMascara, #seccionCalcularIoU {
+    display: flex;
+    align-items: center;
+    gap: 1em
+}
+
+#previewPincel {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--vinoOscuro);
+    border: 1px solid var(--vinoOscuro);
+    transition: width 0.2s ease, height 0.2s ease;
+}
+
+/*cuadro de dialogo de guardar máscara*/
+dialog#dialogoGuardar {
+    background: var(--gris1);
+    border-radius: 1em;
+    font-family: 'Outfit', Arial, Helvetica, sans-serif;
+    padding: 0.8em;
+    text-align: center;  
+}
+  
+dialog::backdrop { /*fondo semiopaco cuando aparece el cuadro de dialogo*/
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#dialogoGuardar button {
+    padding: 0.8em;
+    background: var(--blanco);
+    cursor: pointer;
+    border: 0.1em solid var(--vino);
+    border-radius: 1em;
+    font-family: 'Outfit', Arial, Helvetica, sans-serif;
+}
+
+#botonGuardarSeg:hover, #botonGuardarPng:hover, #botonCancelar:hover {
+    background: var(--vino);
+    color: var(--blanco);
+}
+
+/*DIBUJAR CAJAS*/
+.caja {
+    position: absolute;
+    border: 0.1em solid var(--vino); 
+    background-color: none;
+    pointer-events: none; /* No interfiere con otros eventos */
+}
+
+/*DIBUJAR SEMILLAS*/
+.puntoSemilla {
+    position: absolute;
+    width: 0.2em;
+    height: 0.2em;
+    border-radius: 50%; /*para hacer el punto circular*/
+    background-color: var(--vino);
+    z-index: 100;
+}
+
+/*FOOTER*/
+footer {
+    display: flex;
+    bottom: 0%;
+    padding: 1em;
+    padding-left: 2em;
+    height: 3em;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--vinoOscuro);
+    color: var(--blanco);
+    margin-bottom: 0;
+    font-size: small;
+}
+
+footer p {
+    display: inline;
+    margin: 0 2em; /* Elimina el margen por defecto */
+}
+
+/*CONTENIDO GUÍA*/
+#contenidoGuia {
+    padding-left: 4em;
+    padding-right: 4em;
+    padding-top: 1em;
+    padding-bottom: 2em;
+    background-color: var(--gris1);
+}
+
+#contenidoGuia h2 {
+    color: var(--vinoOscuro);
+}
+
+#contenidoGuia ul {
+    border: 2px solid var(--vino); /* Cambia el color aquí, este es un rojo vino */
+    padding: 1.5em;
+    padding-left: 3em;
+    padding-right: 2.5em;
+    border-radius: 1em; /* Opcional: bordes redondeados para que quede más suave */
+    margin-bottom: 2em; /* Espacio debajo de cada lista para que no se junten */
+    background-color: var(--blanco);
+}
+
+.indentado {
+    margin-left: 3em; /* O el espacio que quieras de sangría */
+}

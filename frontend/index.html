@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicación segmentación de imágenes médicas</title>
+    <link href="apariencia.css" rel="stylesheet" media="screen">
+    <!-- Para los iconos del menú derecho -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <header>
+        <!-- Barra de navegación superior -->
+        <nav class="listaheader">
+            <h1>GUI-SEGMENTACIÓN IMÁGENES MÉDICAS</h1>
+            <ul>
+                <li><a href="index.html" class="actual">Aplicación</a></li>
+                <li><a href="guia.html" target="_blank">Guía de uso</a></li>
+            </ul>  
+        </nav>
+    </header>
+
+    <main>
+        <!-- Contenedor principal -->
+        <section class="contenedorPrincipal">
+
+            <!-- Menú lateral izquierdo onclick="activarBox()" -->
+            <section class="menuIzquierdo">
+                <h2>Técnicas de segmentación</h2>
+                <section class="itemMenu">
+                    <h3 class="tituloMenu" onclick="toggleMenu('hoverClick')">🌱 Region Growing</h3>
+                    <section id="hoverClick" class="submenu">
+                        <button id="botonActivarRG" type="button">Activar RG</button>
+                        <label for="toleranciaLabel">Tolerancia:</label>
+                        <input type="number" id="tolerancia" name="tolerancia" placeholder="10">
+                    </section>
+                </section>
+
+                <section class="itemMenu">
+                    <h3 class="tituloMenu" onclick="toggleMenu('box')">🧩 MedSAM</h3>
+                    <section id="box" class="submenu">
+                        <button id="botonActivarMedsam" type="button">Activar MedSAM</button>
+                    </section>
+                </section>
+                <h3 id="tituloCalcularIoU">Calcular IoU</h3>
+                <section id="seccionCalcularIoU">
+                    <button id="CargarGroundTruth" type="button" onclick="cargarGroundTruth()">Cargar GroundTruth</button>
+                    <button id="botonCalcularIoU"  type="button" onclick="calcularIoU()">Calcular IoU</button>
+                </section>
+                <p id="textoIoU">IoU obtenido: <output id="iou"></output></p>
+            </section>
+
+            <!-- Zona de visualización de la imagen -->
+            <section class="contenedorImagen" id="contenedorImagen">
+                <img id="imagenPrincipal" src="../LogoBiomedicaColorEscalado.png" alt="Imagen a procesar">
+                <canvas id="canvasMascara" style="position: absolute; top: 0; left: 0; pointer-events: none;"></canvas>
+            </section>
+    
+            <!-- Menú lateral derecho -->
+            <section class="menuDerecho">
+                <button id="botonCargarImagen" type="button" onclick="cargarImagen()"> <i class="fas fa-upload"></i> Cargar Imagen</button>
+                <button id="botonGuardarMascara" type="button" onclick="guardarMascara()"> <i class="fas fa-save"></i> Guardar máscara</button>
+                <button id="botonDesplazar" type="button">Activar Desplazamiento</button>
+                <button id="botonReset" type="button" onclick="resetTotal()"><i class="fas fa-sync-alt"></i> Reset total</button>
+                <h3 id="tituloEditarMascara">Editar máscara</h3>
+                <section id="editarMascara">
+                    <button id="botonPintar"  type="button"> <i class="fas fa-pencil-alt"></i> Dibujar</button>
+                    <button id="botonBorrar"  type="button"> <i class="fas fa-eraser"></i> Borrar</button>
+                </section>
+                <section id="controlPincel">
+                    <label for="radioPincelInput">Radio de edición:</label>
+                    <div id="sliderContainer">
+                        <input type="number" id="radioPincelInput" min="1" max="20" value="5">
+                        <div id="previewPincel"></div>
+                    </div>
+                </section>
+            </section>
+        </section>
+        <dialog id="dialogoGuardar">
+            <form method="dialog">
+              <p>¿En qué formato desea guardar la máscara?</p>
+              <button id="botonGuardarSeg">Guardar como <strong>DICOM SEG</strong></button>
+              <button id="botonGuardarPng">Guardar como <strong>PNG</strong></button>
+              <button id="botonCancelar" onclick="cerrarDialogo()">Cancelar</button>
+            </form>
+        </dialog>
+    </main>
+
+    <footer>
+        <p>Alumna: Andrea Mei Sala Aracil</p>
+        <p>TFG Ingeniería Biomédica. Copyright 2025 &copy;</p>
+    </footer> 
+
+    <!-- Para permitir cargar archivo Dicom -->
+    <script src="https://unpkg.com/cornerstone-core@2.3.0/dist/cornerstone.js"></script>
+    <script src="https://unpkg.com/cornerstone-wado-image-loader@3.0.0/dist/cornerstoneWADOImageLoader.js"></script>
+    <script src="https://unpkg.com/cornerstone-web-image-loader@2.1.0/dist/cornerstoneWebImageLoader.js"></script>
+    <script src="https://unpkg.com/cornerstone-tools@4.0.1/dist/cornerstoneTools.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dicom-parser@1.8.11/dist/dicomParser.min.js"></script>
+
+    <!-- Para permitir cargar archivo Tiff -->
+    <script src="https://cdn.jsdelivr.net/npm/utif@2.0.1/UTIF.min.js"></script>
+
+
+    <!-- Para permitir cargar archivo Main -->
+    <script src="main.js"></script> 
+   
+</body>
+</html>
