@@ -3,7 +3,7 @@ This project is a hybrid web-based tool for medical image segmentation, develope
 
 The MedSAM model has been integrated into this application to enable AI-assisted segmentation. More information about the original model can be found in the [MedSAM repository](https://github.com/bowang-lab/MedSAM). 
 
-If a ground truth mask is available, the tool allows the user to calculate the Intersection over Union (IoU) metric to assess the quality of the segmentation. Additionally, a local result file is generated combining the original image with the overlaid masks: the one produced by the selected algorithm in the application (in red) and the provided ground truth n(in green), facilitating visual comparison. The user can also manually refine the segmentation using the painting and erasing tools.
+If a ground truth mask is available, the tool allows the user to calculate the Intersection over Union (IoU) metric to assess the quality of the segmentation. Additionally, a local result file is generated combining the original image with the overlaid masks: the one produced by the selected algorithm in the application (in red) and the provided ground truth (in green), facilitating visual comparison. The user can also manually refine the segmentation using the painting and erasing tools.
 
 ## Technologies Used
 - Frontend: HTML5, CSS, JavaScript
