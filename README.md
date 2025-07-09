@@ -12,4 +12,7 @@ If a ground truth mask is available, the tool allows the user to calculate the I
 
 ## Demo
 You can watch a short demo video. 
-![Demo of the application](demoTFG.gif)
+
+![Demo of the application](demo.gif)
+
+Also, full demo video is available. [fll demo](https://drive.google.com/file/d/1LPyrdAs4ONOdYb40uPEIfmKPBH8K31Gx/view?usp=sharing). 
