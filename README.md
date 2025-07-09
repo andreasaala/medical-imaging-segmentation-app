@@ -15,4 +15,4 @@ You can watch a short demo video.
 
 ![Demo of the application](demoTFG.gif)
 
-Also, full demo video is available. [Full demo](https://drive.google.com/file/d/1LPyrdAs4ONOdYb40uPEIfmKPBH8K31Gx/view?usp=sharing). 
+Also, [full demo video](https://drive.google.com/file/d/1LPyrdAs4ONOdYb40uPEIfmKPBH8K31Gx/view?usp=sharing) is available. 
